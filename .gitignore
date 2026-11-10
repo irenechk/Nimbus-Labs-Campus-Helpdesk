@@ -1,0 +1,14 @@
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Python virtual environment
+.venv/
+
+# Environment secrets
+.env
+.env.*
+
+# Operating system files
+.DS_Store
