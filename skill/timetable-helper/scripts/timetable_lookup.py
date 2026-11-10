@@ -17,6 +17,16 @@ REQUIRED_COLUMNS = {
     "room",
 }
 
+VALID_DAYS = {
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+}
+
 
 def get_timetable(batch, day):
     """Return timetable entries for the requested batch and day."""
@@ -26,6 +36,15 @@ def get_timetable(batch, day):
 
     if not day or not day.strip():
         raise ValueError("Day cannot be empty.")
+
+    batch = batch.strip()
+    day = day.strip()
+
+    if day.casefold() not in VALID_DAYS:
+        raise ValueError(
+            "Invalid day. Please enter a valid weekday "
+            "(Monday to Sunday)."
+        )
 
     if not CSV_FILE.is_file():
         raise FileNotFoundError(
@@ -57,8 +76,8 @@ def get_timetable(batch, day):
                 continue
 
             if (
-                row["batch"].strip().casefold() == batch.strip().casefold()
-                and row["day"].strip().casefold() == day.strip().casefold()
+                row["batch"].strip().casefold() == batch.casefold()
+                and row["day"].strip().casefold() == day.casefold()
             ):
                 results.append(row)
 
@@ -77,10 +96,16 @@ def main():
         classes = get_timetable(batch, day)
 
         if not classes:
-            print(f"No timetable entries found for Batch {batch}, {day}.")
+            print(
+                f"No timetable entries found for "
+                f"Batch {batch.upper()}, {day.title()}."
+            )
             return
 
-        print(f"\nTimetable for Batch {batch.upper()} - {day.title()}\n")
+        print(
+            f"\nTimetable for Batch {batch.upper()} "
+            f"- {day.title()}\n"
+        )
 
         for item in classes:
             print(f"Subject : {item['subject']}")
