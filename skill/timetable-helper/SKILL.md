@@ -96,6 +96,7 @@ Read these files only when their details are required:
 
 - `references/csv-dictionary.md` — CSV columns and data definitions.
 - `references/edge-cases.md` — Input validation and exceptional situations.
+- `references/lookup-guide.md` — Instructions for timetable searches, subject lookups, and presenting results.
 
 ## 9. Script
 
