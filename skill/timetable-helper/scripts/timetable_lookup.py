@@ -1,4 +1,5 @@
 
+import argparse
 import csv
 from pathlib import Path
 
@@ -28,23 +29,28 @@ VALID_DAYS = {
 }
 
 
-def get_timetable(batch, day):
-    """Return timetable entries for the requested batch and day."""
+def get_timetable(batch=None, day=None, subject=None):
+    """Return timetable records matching the supplied filters."""
 
-    if not batch or not batch.strip():
+    if not any([batch, day, subject]):
+        raise ValueError(
+            "Provide at least one search filter: batch, day or subject."
+        )
+
+    if batch is not None and not batch.strip():
         raise ValueError("Batch cannot be empty.")
 
-    if not day or not day.strip():
+    if day is not None and not day.strip():
         raise ValueError("Day cannot be empty.")
 
-    batch = batch.strip()
-    day = day.strip()
-
-    if day.casefold() not in VALID_DAYS:
+    if day is not None and day.strip().casefold() not in VALID_DAYS:
         raise ValueError(
             "Invalid day. Please enter a valid weekday "
             "(Monday to Sunday)."
         )
+
+    if subject is not None and not subject.strip():
+        raise ValueError("Subject cannot be empty.")
 
     if not CSV_FILE.is_file():
         raise FileNotFoundError(
@@ -72,49 +78,105 @@ def get_timetable(batch, day):
             )
 
         for row in reader:
-            if not row.get("batch") or not row.get("day"):
+            row_batch = (row.get("batch") or "").strip()
+            row_day = (row.get("day") or "").strip()
+            row_subject = (row.get("subject") or "").strip()
+
+            if not row_batch or not row_day or not row_subject:
                 continue
 
-            if (
-                row["batch"].strip().casefold() == batch.casefold()
-                and row["day"].strip().casefold() == day.casefold()
-            ):
-                results.append(row)
+            if batch is not None:
+                if row_batch.casefold() != batch.strip().casefold():
+                    continue
+
+            if day is not None:
+                if row_day.casefold() != day.strip().casefold():
+                    continue
+
+            if subject is not None:
+                if row_subject.casefold() != subject.strip().casefold():
+                    continue
+
+            results.append(row)
 
     results.sort(key=lambda item: item["start_time"])
 
     return results
 
 
-def main():
-    print("=== CAMPUS TIMETABLE HELPER ===")
+def display_results(classes, description):
+    """Print matching timetable records."""
 
-    batch = input("Enter batch (A/B): ").strip()
-    day = input("Enter day (Monday-Sunday): ").strip()
+    if not classes:
+        print(f"No timetable entries found for {description}.")
+        return
+
+    print(f"\nTimetable results: {description}\n")
+
+    for item in classes:
+        print(f"Batch   : {item['batch']}")
+        print(f"Day     : {item['day']}")
+        print(f"Subject : {item['subject']}")
+        print(
+            f"Time    : {item['start_time']} - {item['end_time']}"
+        )
+        print(f"Faculty : {item['faculty']}")
+        print(f"Room    : {item['room']}")
+        print("-" * 35)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Search the fictional campus timetable."
+    )
+
+    parser.add_argument("--batch", help="Batch identifier, e.g. A")
+    parser.add_argument("--day", help="Weekday, e.g. Monday")
+    parser.add_argument("--subject", help="Exact subject name")
+
+    args = parser.parse_args()
 
     try:
-        classes = get_timetable(batch, day)
+        # No command-line filters: use interactive mode.
+        if not any([args.batch, args.day, args.subject]):
+            print("=== CAMPUS TIMETABLE HELPER ===")
 
-        if not classes:
-            print(
-                f"No timetable entries found for "
-                f"Batch {batch.upper()}, {day.title()}."
+            batch = input("Enter batch (A/B): ").strip()
+            day = input("Enter day (Monday-Sunday): ").strip()
+
+            classes = get_timetable(batch=batch, day=day)
+            description = f"Batch {batch.upper()}, {day.title()}"
+
+        else:
+            # Batch and day must be supplied together unless
+            # a subject search is also being performed.
+            if (args.batch is None) != (args.day is None):
+                if args.subject is None:
+                    raise ValueError(
+                        "Provide both --batch and --day, "
+                        "or use --subject for a subject search."
+                    )
+
+            classes = get_timetable(
+                batch=args.batch,
+                day=args.day,
+                subject=args.subject
             )
-            return
 
-        print(
-            f"\nTimetable for Batch {batch.upper()} "
-            f"- {day.title()}\n"
-        )
+            filters = []
 
-        for item in classes:
-            print(f"Subject : {item['subject']}")
-            print(
-                f"Time    : {item['start_time']} - {item['end_time']}"
-            )
-            print(f"Faculty : {item['faculty']}")
-            print(f"Room    : {item['room']}")
-            print("-" * 35)
+            if args.batch:
+                filters.append(f"Batch {args.batch.upper()}")
+
+            if args.day:
+                filters.append(args.day.title())
+
+            if args.subject:
+                filters.append(f"Subject {args.subject}")
+
+            description = ", ".join(filters)
+
+        display_results(classes, description)
 
     except (ValueError, FileNotFoundError) as error:
         print(f"Error: {error}")

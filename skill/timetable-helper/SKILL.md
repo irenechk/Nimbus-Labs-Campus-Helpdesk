@@ -1,4 +1,3 @@
-
 ---
 name: timetable-helper
 description: Answers student questions about campus class schedules, lecture timings, subjects, faculty, classrooms, and batch-wise timetables. Use when a student asks to view, check, find, or verify a class timetable or a scheduled lecture. Do not use for fee enquiries, hostel rules, attendance, or general academic questions.
@@ -27,6 +26,8 @@ Activate this Skill when the user asks questions such as:
 - When is Database Management?
 - Which room is assigned to Operating Systems?
 - Who teaches Data Structures?
+- On which days does Batch A have Data Structures?
+- Find all classes for Data Structures.
 
 ## 3. When Not to Use This Skill
 
@@ -41,23 +42,24 @@ These queries require other helpdesk capabilities.
 
 ## 4. Workflow
 
-1. Identify the requested batch and day.
-2. Check whether both values are provided.
-3. If either value is missing, ask the student for it.
+1. Identify the student's timetable search request.
+2. Determine which search filters are available: batch, day, and subject.
+3. Ask for clarification when essential information is missing to answer the request accurately.
 4. Read `references/csv-dictionary.md` if clarification about the CSV structure is needed.
-5. Use `scripts/timetable_lookup.py` to retrieve the requested timetable.
+5. Use `scripts/timetable_lookup.py` with the appropriate command-line arguments, or use its interactive mode.
 6. Check the returned records before preparing the answer.
-7. Present the subject, time, faculty and classroom clearly.
+7. Present the subject, time, faculty, batch, day and classroom as relevant to the question.
 8. If no matching record exists, inform the student that no timetable entry was found.
 9. Consult `references/edge-cases.md` when an unusual input or missing record occurs.
+10. Consult `references/lookup-guide.md` for detailed search and presentation instructions when needed.
 
 ## 5. Important Rules
 
 - Treat the CSV as the only authoritative timetable source.
 - Never invent a subject, lecture, faculty member, time or classroom.
 - Never assume a missing timetable entry means a cancelled class.
-- Do not change the batch or day without confirmation.
-- Accept case differences in batch and day names.
+- Do not change the batch, day or subject without confirmation.
+- Accept case differences in batch, day and subject names.
 - Do not expose information from unrelated records.
 - Report missing or invalid information honestly.
 - Use fictional timetable data only.
@@ -70,7 +72,11 @@ Action: Retrieve Batch A records for Monday and present all matching classes.
 
 User: Where is Operating Systems on Monday for Batch A?
 
-Action: Check the matching timetable record and return its classroom.
+Action: Search the matching batch and day records, then return the classroom exactly as recorded.
+
+User: Find Data Structures for Batch A.
+
+Action: Search for the exact subject and batch, then present all matching records.
 
 User: Show Batch C's Monday timetable.
 
@@ -82,13 +88,14 @@ Action: Do not use this Skill because the question concerns fee information.
 
 ## 7. Edge Cases
 
-- Missing batch: Ask the student to provide their batch.
-- Missing day: Ask the student to specify a day.
+- Missing batch or day for a batch-and-day request: Ask the student for the missing information.
 - Unknown batch: Report that no matching entries were found.
-- Unknown day: Report that no matching entries were found.
+- Unknown day: Report the validation error or no matching entries, as appropriate.
+- Unknown subject: Report that no matching entries were found.
 - No matching class: Never invent a substitute class.
 - Missing CSV: Report a data-source error rather than guessing.
 - Invalid CSV structure: Report the validation error.
+- Ambiguous request: Ask a clarifying question rather than assuming the intended search.
 
 ## 8. References
 
@@ -104,6 +111,26 @@ The timetable lookup script is located at:
 
 `scripts/timetable_lookup.py`
 
-Use the script to retrieve actual records rather than generating timetable information from memory.
+The script supports interactive searches and command-line filters.
 
-The script's execution method and input format must be checked before use. Do not assume it accepts command-line arguments unless its implementation confirms this.
+Examples:
+
+Batch and day:
+
+`python3 scripts/timetable_lookup.py --batch A --day Monday`
+
+Subject:
+
+`python3 scripts/timetable_lookup.py --subject "Data Structures"`
+
+Subject and batch:
+
+`python3 scripts/timetable_lookup.py --subject "Data Structures" --batch A`
+
+Subject, batch and day:
+
+`python3 scripts/timetable_lookup.py --subject "Data Structures" --batch A --day Wednesday`
+
+If no command-line arguments are supplied, the script prompts the user for a batch and day.
+
+Use the script to retrieve actual records rather than generating timetable information from memory. Check its output before responding to the student.

@@ -1,4 +1,3 @@
-
 # Timetable Lookup Guide
 
 ## 1. Purpose
@@ -29,7 +28,7 @@ Use the CSV as the only source of timetable information.
 
 Example:
 
-Batch: A
+Batch: A  
 Day: Monday
 
 Expected matching subjects:
@@ -47,7 +46,18 @@ When a student asks about a particular subject:
 4. Return only matching records.
 5. If the required information is missing, ask for clarification.
 
-Note: The current Python helper supports batch-and-day lookup. Direct subject-search functionality has not yet been implemented.
+The timetable helper supports three exact-match filters: batch, day, and subject. Users can search by batch and day together, by subject alone, or by combining subject with batch and/or day. Matching is case-insensitive for batch, day, and subject.
+
+Results are read only from the supplied fictional timetable CSV. If no matching entries exist, the helper reports that no entries were found rather than inventing a class.
+
+The helper can be run interactively or with command-line arguments:
+
+- Batch and day: `python3 scripts/timetable_lookup.py --batch A --day Monday`
+- Subject: `python3 scripts/timetable_lookup.py --subject "Data Structures"`
+- Subject and batch: `python3 scripts/timetable_lookup.py --subject "Data Structures" --batch A`
+- Subject, batch, and day: `python3 scripts/timetable_lookup.py --subject "Data Structures" --batch A --day Wednesday`
+
+If no command-line filters are supplied, the helper prompts for batch and day interactively.
 
 ## 5. Faculty and Classroom Questions
 
@@ -70,6 +80,7 @@ If multiple classes match the request:
 - Empty batch or day: report a validation error.
 - Invalid weekday: report a validation error.
 - Unknown batch or valid day with no classes: report no matching records.
+- Unknown subject: report no matching records.
 - Missing CSV: report a data-source error.
 - Invalid CSV structure: report a validation error.
 
