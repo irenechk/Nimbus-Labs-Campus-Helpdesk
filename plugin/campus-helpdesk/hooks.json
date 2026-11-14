@@ -1,0 +1,17 @@
+{
+  "protected-folder-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./hooks/protect-folder.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

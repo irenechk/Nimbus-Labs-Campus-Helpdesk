@@ -1,0 +1,8 @@
+{
+  "name": "campus-helpdesk",
+  "version": "1.0.0",
+  "description": "Campus helpdesk plugin with timetable lookup, student fee-status checks, and hostel rules.",
+  "author": {
+    "name": "Nimbus Labs"
+  }
+}
