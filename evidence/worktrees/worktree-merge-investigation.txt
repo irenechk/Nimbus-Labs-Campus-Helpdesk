@@ -1,0 +1,2 @@
+agy --help | grep -i worktree
+No worktree command shown in installed Antigravity CLI help.

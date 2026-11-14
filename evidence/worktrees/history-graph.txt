@@ -1,0 +1,23 @@
+*   52c97ea (feature/skill-tests) Resolve merge conflicts between skill and MCP branches
+|\  
+| * 873a69d (feature/mcp-server) Add conflicting MCP branch version
+| * 415302d Add MCP server worktree notes
+* | 920e3b7 Add merge conflict demonstration file
+* | 1d1e92f Add skill testing worktree notes
+|/  
+| * f28d569 (bugfix/hook-path) Add hook path worktree notes
+|/  
+* d73a9a8 (HEAD -> main) Build and test Nimbus MCP server
+* b506e19 Complete campus helpdesk plugin and verify security hook
+* 20c7cef Add timetable Skill runtime test screenshots
+* 0b24880 Document Antigravity runtime and description tests
+* 122fcc9 Add additional timetable helper test results
+* 4a51b43 Improve timetable helper search and documentation
+* afb3108 Add timetable lookup guide
+* 0f60a54 Add timetable helper test evidence
+* 94edfd3 Document timetable skill trigger tests
+* 9ce52bc Validate weekday input in timetable helper
+* 61dbda1 Add timetable helper skill documentation
+* 504bb69 Add Python and environment gitignore rules
+* 63f78da Add timetable lookup helper
+* 8946aa2 Add fictional campus timetable dataset
