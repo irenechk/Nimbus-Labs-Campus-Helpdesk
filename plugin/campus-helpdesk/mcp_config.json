@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "campus-helpdesk": {
+      "command": "/Users/irenek/campus-helpdesk-agent/.venv/bin/python",
+      "args": [
+        "/Users/irenek/campus-helpdesk-agent/mcp-server/server.py"
+      ],
+      "env": {}
+    }
+  }
+}
