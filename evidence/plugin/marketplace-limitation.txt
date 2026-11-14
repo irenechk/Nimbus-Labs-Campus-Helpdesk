@@ -1,0 +1,15 @@
+Antigravity CLI marketplace investigation
+
+Commands inspected:
+- agy plugin help
+- agy plugin link --help
+- agy plugin list --json
+
+Observed:
+- plugin link requires an already known marketplace and a target.
+- Attempting `agy plugin link nimbus-marketplace ./plugin/campus-helpdesk` returned:
+  Error: unknown marketplace: nimbus-marketplace.
+- The installed CLI help lists no marketplace-add or marketplace-create command.
+
+Conclusion:
+A local catalogue entry is included for packaging evidence. Marketplace registration, adding a marketplace, and installation from a marketplace were not verified and are not claimed as completed. The plugin was installed and verified directly from its local directory.

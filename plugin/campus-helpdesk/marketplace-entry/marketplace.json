@@ -1,0 +1,13 @@
+{
+  "name": "nimbus-campus-marketplace",
+  "description": "Local development catalogue for Nimbus Labs campus-helpdesk.",
+  "plugins": [
+    {
+      "name": "campus-helpdesk",
+      "source": "../",
+      "version": "1.0.0",
+      "description": "Campus helpdesk plugin with timetable Skills and protected-folder hook."
+    }
+  ],
+  "status": "local catalogue only; not registered with Antigravity"
+}
