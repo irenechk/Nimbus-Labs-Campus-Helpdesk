@@ -1,0 +1,6 @@
+Package investigated: @nimbus/mcp-skill-bridge
+Requested version: 2.3
+Registry checked: https://registry.npmjs.org/
+Command: npm view @nimbus/mcp-skill-bridge@2.3 version
+Observed result: E404 Not Found
+Conclusion: The package/version could not be verified in the public npm registry. It was not installed or used. The server was built with the official Python MCP SDK instead.

@@ -1,0 +1,4 @@
+{
+  "DEMO001": {"status": "Partially paid", "outstanding": 12500, "currency": "INR"},
+  "DEMO002": {"status": "Paid", "outstanding": 0, "currency": "INR"}
+}

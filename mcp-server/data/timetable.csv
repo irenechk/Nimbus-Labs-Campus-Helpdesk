@@ -1,0 +1,5 @@
+batch,day,start_time,end_time,subject,faculty,room
+A,Monday,09:00,10:00,Data Structures,Prof Sharma,Room 101
+A,Monday,10:00,11:00,Database Management,Prof Mehta,Room 102
+A,Tuesday,09:00,10:00,Computer Networks,Prof Shah,Room 104
+B,Monday,09:00,10:00,Database Management,Prof Mehta,Room 202
