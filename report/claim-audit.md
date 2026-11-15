@@ -69,7 +69,7 @@ The documented `git worktree` command set includes operations such as `add`, `li
 **Accessed:** 15 November 2026.
 
 ### 7. Antigravity plugins can bundle commands, subagents, Skills, hooks, and MCP configurations
-**Verdict: TRUE, WITH QUALIFICATION**
+**Verdict: TRUE**
 
 Antigravity plugin documentation describes bundles containing Skills, custom agents or subagents, lifecycle hooks, and MCP server configurations. Skills can be invoked through slash commands, but the documented plugin component layout does not define a separate top-level `commands/` component.
 

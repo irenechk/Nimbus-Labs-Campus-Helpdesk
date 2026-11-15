@@ -18,6 +18,11 @@ def get_timetable(batch: str, day: str) -> dict:
         return {"error": "Invalid weekday"}
     with (DATA / "timetable.csv").open(newline="") as f:
         rows = list(csv.DictReader(f))
+
+    valid_batches = {row["batch"].casefold() for row in rows}
+    if batch.casefold() not in valid_batches:
+        return {"error": "Unknown batch"}
+
     matches = [
         row for row in rows
         if row["batch"].casefold() == batch.casefold()

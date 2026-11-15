@@ -26,3 +26,20 @@ Run: mcp dev mcp-server/server.py
 - JSON-RPC tools/call
 
 All records are fictional demonstration data.
+
+## Validation and error handling
+
+The server validates the requested weekday and checks that the batch exists
+in the mock timetable data before returning results.
+
+Direct Python functional checks performed:
+
+- Valid batch and weekday: returns matching timetable records.
+- Unknown batch: returns `{"error": "Unknown batch"}`.
+- Invalid weekday: returns `{"error": "Invalid weekday"}`.
+- Known mock student ID: returns the mock fee-status record.
+- Unknown student ID: returns `{"error": "Student ID not found"}`.
+- Hostel rules resource: returns the mock hostel-rules text.
+
+These checks call the server functions directly. They are not a substitute
+for MCP Inspector or raw JSON-RPC protocol tests.

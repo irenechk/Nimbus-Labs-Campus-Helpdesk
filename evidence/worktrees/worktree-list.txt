@@ -1,4 +1,4 @@
-/Users/irenek/campus-helpdesk-agent d73a9a8 [main]
+/Users/irenek/campus-helpdesk-agent c0cf1bc [main]
 /Users/irenek/wt-hook-path          f28d569 [bugfix/hook-path]
 /Users/irenek/wt-mcp-server         873a69d [feature/mcp-server]
 /Users/irenek/wt-skill-tests        52c97ea [feature/skill-tests]

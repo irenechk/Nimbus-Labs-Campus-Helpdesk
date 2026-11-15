@@ -9,3 +9,14 @@ I also learned to verify commands and package claims rather than trusting plausi
 Git worktrees made parallel development easier because each branch had its own working directory while sharing repository history. The deliberate merge conflict demonstrated why changes still need review and explicit resolution.
 
 If I extended this project, I would add automated regression tests for Skill routing, hook integration tests using the actual runtime, stronger schema validation, and continuous checks for dependencies and plugin configuration. I would also improve evidence capture so every important claim is linked to a reproducible command, output, or screenshot. Overall, the project taught me to treat verification, honest reporting, and least privilege as essential parts of agent engineering.
+
+## Choosing a Skill or an MCP Tool
+
+I would choose a Skill when the task needs conversational guidance,
+domain-specific instructions, progressive disclosure, or clarification
+of incomplete user requests. For example, the timetable Skill can ask
+which batch or day a student means before performing a lookup. I would
+choose an MCP tool when the agent needs a defined, repeatable operation
+against structured data, such as retrieving timetable records or
+checking a fictional fee status. A Skill guides the agent's behaviour;
+an MCP tool exposes a structured capability that the agent can call.
