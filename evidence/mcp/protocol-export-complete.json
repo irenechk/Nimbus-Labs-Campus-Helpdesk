@@ -1,0 +1,261 @@
+[
+  {
+    "id": "c457988f-366e-4aa8-8b1a-03fd98fbf01b",
+    "timestamp": "2026-11-15T10:53:29.656Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "sampling": {},
+          "elicitation": {
+            "form": {},
+            "url": {}
+          },
+          "roots": {
+            "listChanged": true
+          },
+          "tasks": {
+            "list": {},
+            "cancel": {},
+            "requests": {
+              "sampling": {
+                "createMessage": {}
+              },
+              "elicitation": {
+                "create": {}
+              }
+            }
+          },
+          "extensions": {
+            "io.modelcontextprotocol/tasks": {},
+            "io.modelcontextprotocol/ui": {
+              "mimeTypes": [
+                "text/html;profile=mcp-app"
+              ],
+              "elicitation": {}
+            },
+            "io.modelcontextprotocol/skills": {}
+          }
+        },
+        "clientInfo": {
+          "name": "mcp-inspector",
+          "version": "2.13.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 0
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 0,
+      "result": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "experimental": {},
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "serverInfo": {
+          "name": "nimbus-campus-helpdesk",
+          "version": "1.30.0"
+        }
+      }
+    },
+    "duration": 604
+  },
+  {
+    "id": "7fc2b89c-1c7f-478d-ba61-bc4091bfaabc",
+    "timestamp": "2026-11-15T10:53:30.268Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/initialized"
+    }
+  },
+  {
+    "id": "a7f5f613-269e-40e3-bb67-2e8459c26bd4",
+    "timestamp": "2026-11-15T10:53:30.287Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "jsonrpc": "2.0",
+      "id": 1,
+      "params": {
+        "_meta": {
+          "progressToken": 1
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "resources": [
+          {
+            "name": "hostel_rules",
+            "uri": "campus://hostel/rules",
+            "description": "Read the mock campus hostel rules.",
+            "mimeType": "text/plain"
+          }
+        ]
+      }
+    },
+    "duration": 80
+  },
+  {
+    "id": "48f4e6c9-d022-4e98-9f99-e04a352e9695",
+    "timestamp": "2026-11-15T10:53:30.288Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "jsonrpc": "2.0",
+      "id": 2,
+      "params": {
+        "_meta": {
+          "progressToken": 2
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "get_timetable",
+            "description": "Get scheduled classes for a batch on a weekday from the mock timetable.",
+            "inputSchema": {
+              "properties": {
+                "batch": {
+                  "title": "Batch",
+                  "type": "string"
+                },
+                "day": {
+                  "title": "Day",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "batch",
+                "day"
+              ],
+              "title": "get_timetableArguments",
+              "type": "object"
+            }
+          },
+          {
+            "name": "get_fee_status",
+            "description": "Get mock fee status for a student ID. Uses fictional demonstration records.",
+            "inputSchema": {
+              "properties": {
+                "student_id": {
+                  "title": "Student Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "student_id"
+              ],
+              "title": "get_fee_statusArguments",
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "duration": 107
+  },
+  {
+    "id": "b3fcad63-f054-43c1-9e52-d89627535475",
+    "timestamp": "2026-11-15T10:53:30.288Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "jsonrpc": "2.0",
+      "id": 3,
+      "params": {
+        "_meta": {
+          "progressToken": 3
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "prompts": []
+      }
+    },
+    "duration": 136
+  },
+  {
+    "id": "26e17bda-074b-411a-b797-2663a1db27c2",
+    "timestamp": "2026-11-15T10:53:30.288Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/templates/list",
+      "jsonrpc": "2.0",
+      "id": 4,
+      "params": {
+        "_meta": {
+          "progressToken": 4
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "resourceTemplates": []
+      }
+    },
+    "duration": 150
+  },
+  {
+    "id": "92c20e88-c59e-4453-b91e-310db403aaa5",
+    "timestamp": "2026-11-15T10:53:42.229Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/read",
+      "params": {
+        "uri": "campus://hostel/rules",
+        "_meta": {
+          "progressToken": 5
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 5
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "contents": [
+          {
+            "uri": "campus://hostel/rules",
+            "mimeType": "text/plain",
+            "text": "# Mock Campus Hostel Rules\n\n1. Residents must carry their campus identification.\n2. Visitors must register at the hostel reception.\n3. Quiet hours are from 10 PM to 6 AM.\n4. Residents must follow the published entry and exit procedures.\n5. Report maintenance issues to the hostel office.\n\nThese are fictional demonstration rules, not official campus policy.\n"
+          }
+        ]
+      }
+    },
+    "duration": 50
+  }
+]

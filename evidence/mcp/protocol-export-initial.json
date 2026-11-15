@@ -1,0 +1,230 @@
+[
+  {
+    "id": "909ab964-71c6-4c2d-ab9a-aa1dd4402a98",
+    "timestamp": "2026-11-15T07:04:26.095Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "sampling": {},
+          "elicitation": {
+            "form": {},
+            "url": {}
+          },
+          "roots": {
+            "listChanged": true
+          },
+          "tasks": {
+            "list": {},
+            "cancel": {},
+            "requests": {
+              "sampling": {
+                "createMessage": {}
+              },
+              "elicitation": {
+                "create": {}
+              }
+            }
+          },
+          "extensions": {
+            "io.modelcontextprotocol/tasks": {},
+            "io.modelcontextprotocol/ui": {
+              "mimeTypes": [
+                "text/html;profile=mcp-app"
+              ],
+              "elicitation": {}
+            },
+            "io.modelcontextprotocol/skills": {}
+          }
+        },
+        "clientInfo": {
+          "name": "mcp-inspector",
+          "version": "2.13.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 0
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 0,
+      "result": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "experimental": {},
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "serverInfo": {
+          "name": "nimbus-campus-helpdesk",
+          "version": "1.30.0"
+        }
+      }
+    },
+    "duration": 549
+  },
+  {
+    "id": "8a936b55-5eb1-4def-9600-1612c783cd51",
+    "timestamp": "2026-11-15T07:04:26.654Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/initialized"
+    }
+  },
+  {
+    "id": "824bfb41-10e6-4a04-ab9a-09f3fcffb09d",
+    "timestamp": "2026-11-15T07:04:26.677Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "jsonrpc": "2.0",
+      "id": 1,
+      "params": {
+        "_meta": {
+          "progressToken": 1
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "resources": [
+          {
+            "name": "hostel_rules",
+            "uri": "campus://hostel/rules",
+            "description": "Read the mock campus hostel rules.",
+            "mimeType": "text/plain"
+          }
+        ]
+      }
+    },
+    "duration": 112
+  },
+  {
+    "id": "13acd4d4-094d-4b1f-abf5-ca05799f71a7",
+    "timestamp": "2026-11-15T07:04:26.677Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "jsonrpc": "2.0",
+      "id": 2,
+      "params": {
+        "_meta": {
+          "progressToken": 2
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "get_timetable",
+            "description": "Get scheduled classes for a batch on a weekday from the mock timetable.",
+            "inputSchema": {
+              "properties": {
+                "batch": {
+                  "title": "Batch",
+                  "type": "string"
+                },
+                "day": {
+                  "title": "Day",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "batch",
+                "day"
+              ],
+              "title": "get_timetableArguments",
+              "type": "object"
+            }
+          },
+          {
+            "name": "get_fee_status",
+            "description": "Get mock fee status for a student ID. Uses fictional demonstration records.",
+            "inputSchema": {
+              "properties": {
+                "student_id": {
+                  "title": "Student Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "student_id"
+              ],
+              "title": "get_fee_statusArguments",
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "duration": 154
+  },
+  {
+    "id": "42975213-baba-4717-89bf-401efff1a0bc",
+    "timestamp": "2026-11-15T07:04:26.677Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "jsonrpc": "2.0",
+      "id": 3,
+      "params": {
+        "_meta": {
+          "progressToken": 3
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "prompts": []
+      }
+    },
+    "duration": 173
+  },
+  {
+    "id": "55fac0b4-dde3-459f-9659-373943347ee1",
+    "timestamp": "2026-11-15T07:04:26.677Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/templates/list",
+      "jsonrpc": "2.0",
+      "id": 4,
+      "params": {
+        "_meta": {
+          "progressToken": 4
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "resourceTemplates": []
+      }
+    },
+    "duration": 190
+  }
+]
